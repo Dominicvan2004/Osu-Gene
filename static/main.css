@@ -1,0 +1,77 @@
+:root{
+    --accent-color: rgba(8, 61, 152, 0.869);
+    --primary-color: rgb(231, 223, 212);
+    --select-color: rgba(255, 247, 0, 0.726);
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: none;
+    font-family: 'Courier New', monospace;
+    background-color: var(--primary-color);
+}
+
+header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    justify-self: flex-start;
+    background-color: var(--accent-color);
+    padding: 20px 10%; 
+}
+
+
+.navBar {
+    justify-content:space-between;
+    align-items: start;
+    padding: 10px 5%;
+    color: var(--accent-color);
+}
+
+.navBar li, a, button{
+    display: flex;
+    font-size: medium;
+    color: var(--primary-color);
+}
+
+.logo{
+    display: flex;
+    cursor: pointer;
+}
+
+.logo:hover{
+    content: url(images/websitecat2.png);
+}
+
+.navbar ol{
+    list-style: none;
+}
+
+.navBar li{
+    display: inline-block;
+    padding: 0px 20px;
+    cursor: pointer;
+}
+
+.navBar li:hover{
+    transform: translateY(-2px);
+    font-weight: 600;
+}
+
+.footContainer{
+    display: flex;
+    padding: 3%;
+}
+
+.footContainer div{
+
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-start;
+    background-color: var(--accent-color);
+    height: 10%;
+}
+

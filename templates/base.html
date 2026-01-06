@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+        {% block head %}{% endblock %}
+    </head>
+    
+    <body>
+        <header>
+            <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/websitecat.png') }}" class="logo" ></a>
+            <nav class="navBar">
+                <ol>
+                    <li><a href="{{ url_for('index') }}">About Me</a></li>
+                    <li><a href="{{ url_for('projects') }}">Projects</a></li>
+                </ol>
+            </nav>  
+        </header>
+        {% block body %}{% endblock %}
+        <footer class="footContainer">
+            <div>
+            </div>
+        </footer>
+    </body>
+</html>

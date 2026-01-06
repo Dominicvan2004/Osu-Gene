@@ -1,0 +1,37 @@
+.credentialContainer{
+    margin-top: 50px;
+    display: flex;
+    justify-content: start space-evenly;
+    width: 100%;
+}
+
+
+.credential{
+    color: var(--accent-color);
+    padding: 20px;
+    
+}
+
+.outputContainer{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+   
+}
+
+.outputContainer h1{
+    display: flex;
+    color: var(--accent-color);
+}
+
+.output{
+color: var(--accent-color);
+padding: 20px;
+display: flex;
+width: 50%;
+justify-content: center;
+border: 5px solid var(--accent-color);
+border-radius: 30px;
+background-color: white;
+}
