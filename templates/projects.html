@@ -12,14 +12,21 @@
 </div>
 
 <div class="projectContainer">
+
    <div>
-    <h1>BubbleSort</h1>
-    <p>Bubble Sort is a NES style high score game my friends and I made for the Thompson Rivers University global game jam. It was built in the Godot game and is a blast to play.</p>
+        <a href="{{ url_for('gene') }}" style="display: flex; flex-direction: column; justify-content: flex-start;">
+        <h1>BubbleSort</h1>
+        <p>Bubble Sort is a NES style high score game my friends and I made for the Thompson Rivers University global game jam. It was built in the Godot game engine and is a blast to play.</p>
+        </a>
    </div>
    
-   <div>
-    <h1>Osu Gene</h1>
-    <p>Osu Gene is a Python Program that uses a genetic algorithm to suggest Osu Beatmaps given a user's play history. It was originally a school project for my procedural content generation class but I have choosen to keep improving it as I really like the idea.</p>
-   </div>
+   
+    <div>
+        <a href="{{ url_for('gene') }}" style="display: flex; flex-direction: column; justify-content: flex-start;">
+        <h1>Osu Gene</h1>
+        <p>Osu Gene is a Python Program that uses a genetic algorithm to suggest Osu Beatmaps given a user's play history. It was originally a school project for my procedural content generation class but I have choosen to keep improving it as I really like the idea.</p>
+        </a>
+    </div>
+   
 </div>
 {% endblock %}

@@ -7,20 +7,20 @@
 body{
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     border: none;
     font-family: 'Courier New', monospace;
     background-color: var(--primary-color);
 }
 
 header{
-    width: 100%;
     display: flex;
+    flex-grow: 1;
     align-items: center;
     justify-content: flex-start;
     justify-self: flex-start;
     background-color: var(--accent-color);
-    padding: 20px 10%; 
+    padding: 20px 5%; 
 }
 
 
