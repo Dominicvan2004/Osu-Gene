@@ -39,6 +39,7 @@ header{
 
 .logo{
     display: flex;
+    flex-grow: 1;
     cursor: pointer;
 }
 

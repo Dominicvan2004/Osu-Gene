@@ -55,4 +55,5 @@ width: 60%;
     border-radius: 30px;
     background-color: white;
     font-weight:bolder;
+    columns: var(--accent-color);
 }
