@@ -3,7 +3,7 @@ Flask,
 render_template, 
 request
 )
-from Osu_gene.main import osu_gene
+from Osu_gene.osu_gene import osu_gene
 import asyncio as a 
 
 app = Flask(__name__)
@@ -19,21 +19,16 @@ def projects():
 
 @app.route('/gene', methods=["GET", "POST"])
 def gene():
-    # test: list = ["hello", "IM", " testing", " my", "app", " testing", " my", "app", " testing", " my", "app"]
-    # test1: list = []
-    # for i in test:
-    #     test1.append(f"<div class=\"container\">{i}</div>")\
 
-    item0: list = []
-    item1: list = []
+    empty_list: list = []
+    filled_list: list = []
 
     if request.method == "POST":
         item1 = a.run(osu_gene(request.form['id']))
-        return render_template('gene.html', item=item1)
+        return render_template('gene.html', item=filled_list)
     else:
-        return render_template('gene.html', item=item0)
+        return render_template('gene.html', item=empty_list)
     
-
 
 
         
