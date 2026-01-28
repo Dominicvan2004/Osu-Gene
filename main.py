@@ -24,7 +24,7 @@ def gene():
     filled_list: list = []
 
     if request.method == "POST":
-        item1 = a.run(osu_gene(request.form['id']))
+        filled_list = a.run(osu_gene(request.form['id']))
         return render_template('gene.html', item=filled_list)
     else:
         return render_template('gene.html', item=empty_list)

@@ -6,10 +6,27 @@
 
 .profileContainer{
   display: flex;
+  flex-shrink: 1;
+  justify-content: left;
+  border: 5px solid var(--accent-color);
+  border-radius: 30px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-right: 5%;
+  margin-left: 5%;
+  padding: 3%;
+}
 
-  justify-content: center;
-  padding: 10%;
-  background-color: white;
-  border: 10px;
-  border-color: solid var(--accent-color);
+.pfp{
+  margin-right: 3%;
+  height: 40%;
+  width: 20%;
+  border-radius: 30px;
+  border: 5px solid var(--accent-color);
+}
+
+.title{
+  color: var(--accent-color);
+    font-size: 300%;
+    font-weight: 600;
 }
