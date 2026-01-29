@@ -30,3 +30,11 @@
     font-size: 300%;
     font-weight: 600;
 }
+
+.about_me_text{
+  color: var(--accent-color);
+  border: 5px solid var(--accent-color);
+  border-radius: 30px;
+  padding: 3%;
+  background-color: white;
+}

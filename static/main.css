@@ -25,7 +25,7 @@ header{
 
 
 .navBar {
-    justify-content:space-between;
+    /* justify-content:space-between; */
     align-items: start;
     padding: 10px 5%;
     color: var(--accent-color);
@@ -44,7 +44,7 @@ header{
 }
 
 .logo:hover{
-    content: url(images/websitecat2.png);
+    content: url(images/kitty\ for\ website2.png);
 }
 
 .navbar ol{

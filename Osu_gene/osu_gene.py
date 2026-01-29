@@ -68,7 +68,7 @@ async def osu_gene(id: int):
 
     
     print(len(beatmapset_list))
-    beatmap_list: list[beatmap_dna] = [] # a list thats serves a container for bearmaps so we can randomly populate our genomes 
+    beatmap_list: list[beatmap_dna] = [] # a list thats serves a container for beatmaps so we can randomly populate our genomes 
     genome_list: list[Genome] = [] # this serves as a contianer to hold all of our random genomes 
     pop_size: int = 4000 # pop_size will control how many genomes there are in our initial generatiion 
     generations: int = 3000 # how many time the crossove funtion will run
@@ -76,23 +76,27 @@ async def osu_gene(id: int):
     bm_list: list = [] #serves as the task list for all the get beatmap co routines 
     bma_list: list = [] #serves as the task list for all the get beatmap attribute co routines 
     selection_pressure: int = 10 #the population size of parents for a tournament selection in the grab parent method 
+    test_list: list = []
 
     # create a list of beatmap objects
     
     for beatmapset in beatmapset_list: 
         for map in beatmapset.beatmaps: #for each beatmapset we go through each beatmap
             if(map.mode == ModeStr.STANDARD): #if the beatmap is of mode standard 
-                bm_list.append(aclient.get_beatmap(map.id))
-                bma_list.append(aclient.get_beatmap_attributes(map.id))
+                # bm_list.append(aclient.get_beatmap(map.id))
+                # bma_list.append(aclient.get_beatmap_attributes(map.id))
+                test_list.extend([aclient.get_beatmap(map.id),aclient.get_beatmap_attributes(map.id)])
     print("tasks gathered")
     
     print(len(bm_list), len(bma_list))
-    bm_result: list = await a.gather(*bm_list) 
-    bma_result: list = await a.gather(*bma_list)
+    # bm_result: list = await a.gather(*bm_list) 
+    # bma_result: list = await a.gather(*bma_list)
+    test_list = await a.gather(*test_list)
 
-    for bm, bma in zip(bm_result, bma_result):
-        beatmap_list.append(beatmap_dna(user_fitness_base, bm, bma))
-    
+    # for bm, bma in zip(bm_result, bma_result):
+    #     beatmap_list.append(beatmap_dna(user_fitness_base, bm, bma))
+    for i in range(0,len(test_list),2):
+        beatmap_list.append(beatmap_dna(user_fitness_base, test_list[i], test_list[i+1]))
 
     #creates a list of 10 random beatmaps to use as a parameter for the genome class
     def random_genome() -> list[beatmap_dna]:
@@ -130,8 +134,6 @@ async def osu_gene(id: int):
         
         return(pop[0])
         
-
-
 
     def cross_over():
         
