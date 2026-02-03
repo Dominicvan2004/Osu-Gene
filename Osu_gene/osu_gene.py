@@ -4,10 +4,12 @@ from dotenv import load_dotenv
 from Osu_gene.user import user_fitness
 from math import ceil
 import asyncio as a
+
 from Osu_gene.classes import( 
     Genome,
     beatmap_dna            
   )
+
 from osu import (
     Client,
     Beatmapset,
@@ -20,6 +22,7 @@ from osu import (
     GameModeStr as ModeStr,
     BeatmapsetSearchSort as Sort
 )
+
 load_dotenv()
 
 
