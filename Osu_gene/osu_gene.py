@@ -32,6 +32,8 @@ redirect_url = os.getenv('REDIRECT_URL')
 
 client = Client.from_credentials(client_id, client_secret, redirect_url, request_wait_time = 00.1)
 aclient = Aclient.from_credentials(client_id, client_secret, redirect_url, request_wait_time = 00.1)
+client = Client.from_credentials(client_id, client_secret, redirect_url, request_wait_time = 0.1)
+aclient = Aclient.from_credentials(client_id, client_secret, redirect_url, request_wait_time = 0.1)
 
 async def osu_gene(id: int):
 
@@ -75,6 +77,8 @@ async def osu_gene(id: int):
     genome_list: list[Genome] = [] # this serves as a contianer to hold all of our random genomes 
     pop_size: int = 4000 # pop_size will control how many genomes there are in our initial generatiion 
     generations: int = 3000 # how many time the crossove funtion will run
+    pop_size: int = 200 # pop_size will control how many genomes there are in our initial generatiion 
+    generations: int = 1000 # how many time the crossove funtion will run
     dna_size: int = 10 # size of the dna list in each genome 
     bm_list: list = [] #serves as the task list for all the get beatmap co routines 
     bma_list: list = [] #serves as the task list for all the get beatmap attribute co routines 
