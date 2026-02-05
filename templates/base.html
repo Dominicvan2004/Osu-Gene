@@ -3,17 +3,17 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{ url_for('static', filename='./output.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
         {% block head %}{% endblock %}
     </head>
     
-    <body>
-        <header>
+    <body class="bg-amber-100 flex-row">
+        <header class="flex-col">
             <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/kitty for website.png') }}" class="logo" ></a>
-            <nav class="navBar">
-                <ol>
-                    <li><a href="{{ url_for('index') }}">About Me</a></li>
-                    <li><a href="{{ url_for('projects') }}">Projects</a></li>
+            <nav class="flex-row" style="justify-content: flex-start; flex-direction: row; align-items: start;">
+                <ol class="flex-row" style="justify-content: start; flex-direction: row;">
+                    <li class="flex"><a href="{{ url_for('index') }}">About Me</a></li>
+                    <li class="flex"><a href="{{ url_for('projects') }}">Projects</a></li>
                 </ol>
             </nav>  
         </header>

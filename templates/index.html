@@ -1,19 +1,20 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+
 
 {% endblock %}
 
 {% block body %}
 
-<div style="display: flex; justify-content: start; flex-direction: column;">
+<div class="flex bg-amber-100
+ align-top padding">
 
-  <div style="display: flex; justify-content: center; align-items: center;">
+  <div class="bg-amber-100 flex">
     <h1 class="title">About Me</h1>
   </div>
     <div class="profileContainer" >
-      <img class="pfp" src="{{ url_for('static', filename='images/me.png') }}">
+      <img class="border" style="border-width: 5px; border-color: cornflowerblue; border-radius: 30px;"src="{{ url_for('static', filename='images/me.png') }}">
       <p class="about_me_text">Hi my name is Dominic Van Nus, I am a 21 year old 3rd year computer science student at Thompson Rivers University. </p>
     </div>
 
