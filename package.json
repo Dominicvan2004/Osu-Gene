@@ -8,3 +8,4 @@
     "watch": "tailwindcss -i ./static/input.css -o ./static/main.css --watch"
   }
 }
+
