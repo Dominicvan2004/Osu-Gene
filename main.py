@@ -9,19 +9,9 @@ import asyncio as a
 app = Flask(__name__)
 
 
-@app.route('/')
+
+@app.route('/', methods=["GET", "POST"])
 def index():
-    return render_template('index.html')
-
-
-@app.route('/projects')
-def projects():
-    return render_template('projects.html')
-
-
-@app.route('/gene', methods=["GET", "POST"])
-def gene():
-
     empty_list: list = []
     filled_list: list = []
 
