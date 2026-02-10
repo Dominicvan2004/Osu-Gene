@@ -7,26 +7,26 @@
 
 
 {% block body %}
+<div class="flex flex-col justify-center">
+    <div class="flex justify-center">
+        <div >
+            <form action="/" method="post" class="">
+            <p>ID:<input type="text" name="id" class="bg-white " /><input type="submit" value="submit" /></p> 
+            </form></div>
+    </div>
 
-<div class="credentialContainer">
-    <div class="credential">
-        <form action="/" method="post">
-         <p>ID:<input type="text" name="id" /><input type="submit" value="submit" /></p> 
-        </form></div>
-</div>
-<div class="outputContainer">
-    <h1>Output</h1>
-</div>
+    <div class="flex justify-center margin font-bold mb">
+            <h1>Output</h1>
+    </div>
+    <div class="flex justify-center">
+        
+        <div class="border-primary rounded-3xl border-5 w-6/12 h-32" >
+                {% for i in item %}
+                    
+                    <td>{{i | safe}}</td>
 
-<div class="outputContainer" style="margin-top: 5px;">
-    
-    <div class="output">
-            {% for i in item %}
-                
-                <td>{{i | safe}}</td>
-
-            {% endfor %}
+                {% endfor %}
+        </div>
     </div>
 </div>
-
 {% endblock %}

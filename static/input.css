@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+@theme {
+    --color-primary: oklch(37.9% 0.146 265.522);
+    --color-secondary: oklch(96.2% 0.059 95.617);
+}
