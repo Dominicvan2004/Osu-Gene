@@ -19,8 +19,8 @@ client_id = int(os.getenv('CLIENT_ID'))
 client_secret = os.getenv('CLIENT_SECRET')
 redirect_url = os.getenv('REDIRECT_URL')
 
-client = Client.from_credentials(client_id, client_secret, redirect_url)
-aclient = Aclient.from_credentials(client_id, client_secret, redirect_url)
+client = Client.from_credentials(client_id, client_secret, redirect_url, request_wait_time = 0.1)
+aclient = Aclient.from_credentials(client_id, client_secret, redirect_url, request_wait_time = 0.1)
 
 
 class beatmap_dna:
@@ -47,11 +47,11 @@ class beatmap_dna:
         avg_deviation:float = 0
        
         print("this is map fitness")
-        avg_deviation += 2*abs(self.bm.bpm - self.user_fitenss_list[0])
-        avg_deviation += abs(self.bma.mode_attributes.aim_difficulty - self.user_fitenss_list[1])
-        avg_deviation += abs(self.bm.last_updated.year - self.user_fitenss_list[2])
-        avg_deviation += 10*abs(self.bma.star_rating - self.user_fitenss_list[3])
-        avg_deviation += abs(self.bma.mode_attributes.slider_factor - self.user_fitenss_list[4])
+        avg_deviation += 2*abs(self.bm.bpm - self.user_fitenss_list["bpm"])
+        avg_deviation += abs(self.bma.mode_attributes.aim_difficulty - self.user_fitenss_list["aim"])
+        avg_deviation += abs(self.bm.last_updated.year - self.user_fitenss_list["ranked_year"])
+        avg_deviation += 10*abs(self.bma.star_rating - self.user_fitenss_list["sr"])
+        avg_deviation += abs(self.bma.mode_attributes.slider_factor - self.user_fitenss_list["slider"])
 
         self.fitness_score = avg_deviation
         

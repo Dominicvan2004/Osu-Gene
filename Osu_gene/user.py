@@ -23,8 +23,8 @@ client_id = int(os.getenv('CLIENT_ID'))
 client_secret = os.getenv('CLIENT_SECRET')
 redirect_url = os.getenv('REDIRECT_URL')
 
-client = Client.from_credentials(client_id, client_secret, redirect_url)
-aclient = Aclient.from_credentials(client_id, client_secret, redirect_url, request_wait_time=0.09)
+client = Client.from_credentials(client_id, client_secret, redirect_url, request_wait_time = 0.1)
+aclient = Aclient.from_credentials(client_id, client_secret, redirect_url, request_wait_time = 0.1)
 
 
 #grabs all non osu lazer mods from a score and returns them as a list 
@@ -58,8 +58,8 @@ async def user_fitness(user_id: int)->list:
     bma_result = await a.gather(*bma_list)
     
     for bm,bma in zip(bm_result,bma_result):
-        # bm = await aclient.get_beatmap(score.beatmap_id)
-        # bma = await aclient.get_beatmap_attributes(score.beatmap_id, mods=get_mods_as_list(score), ruleset=Modestr.STANDARD)
+        bm = await aclient.get_beatmap(score.beatmap_id)
+        bma = await aclient.get_beatmap_attributes(score.beatmap_id, mods=get_mods_as_list(score), ruleset=Modestr.STANDARD)
         get_mods_as_list(score)
         #adds the year it was last updated to avg_ranked_year
         avg_ranked_year += bm.last_updated.year
@@ -75,8 +75,19 @@ async def user_fitness(user_id: int)->list:
         #applies the mod scaler to the maps star rating then adds that value to avg_sr
         avg_sr +=  bma.star_rating
         avg_aim_diff += bma.mode_attributes.aim_difficulty
-        avg_slider_diff += bma.mode_attributes.slider_factor    
-    return([avg_bpm/5, avg_aim_diff/5, math.floor(avg_ranked_year/5), avg_sr/5, avg_slider_diff/5])
+        avg_slider_diff += bma.mode_attributes.slider_factor 
+
+
+   
+    return(
+        {  
+        "bpm": avg_bpm/5,
+        "aim": avg_aim_diff/5,
+        "ranked_year": math.floor(avg_ranked_year/5),
+        "sr": avg_sr/5,
+        "slider": avg_slider_diff/5
+        })
+    #[avg_bpm/5, avg_aim_diff/5, math.floor(avg_ranked_year/5), avg_sr/5, avg_slider_diff/5]
 
 
 

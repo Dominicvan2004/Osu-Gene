@@ -30,8 +30,7 @@ client_id = int(os.getenv('CLIENT_ID'))
 client_secret = os.getenv('CLIENT_SECRET')
 redirect_url = os.getenv('REDIRECT_URL')
 
-client = Client.from_credentials(client_id, client_secret, redirect_url, request_wait_time = 00.1)
-aclient = Aclient.from_credentials(client_id, client_secret, redirect_url, request_wait_time = 00.1)
+
 client = Client.from_credentials(client_id, client_secret, redirect_url, request_wait_time = 0.1)
 aclient = Aclient.from_credentials(client_id, client_secret, redirect_url, request_wait_time = 0.1)
 
@@ -75,10 +74,8 @@ async def osu_gene(id: int):
     print(len(beatmapset_list))
     beatmap_list: list[beatmap_dna] = [] # a list thats serves a container for beatmaps so we can randomly populate our genomes 
     genome_list: list[Genome] = [] # this serves as a contianer to hold all of our random genomes 
-    pop_size: int = 4000 # pop_size will control how many genomes there are in our initial generatiion 
-    generations: int = 3000 # how many time the crossove funtion will run
-    pop_size: int = 200 # pop_size will control how many genomes there are in our initial generatiion 
-    generations: int = 1000 # how many time the crossove funtion will run
+    pop_size: int = 20000 # pop_size will control how many genomes there are in our initial generatiion 
+    generations: int = 10000 # how many time the crossove funtion will run
     dna_size: int = 10 # size of the dna list in each genome 
     bm_list: list = [] #serves as the task list for all the get beatmap co routines 
     bma_list: list = [] #serves as the task list for all the get beatmap attribute co routines 
@@ -90,23 +87,23 @@ async def osu_gene(id: int):
     for beatmapset in beatmapset_list: 
         for map in beatmapset.beatmaps: #for each beatmapset we go through each beatmap
             if(map.mode == ModeStr.STANDARD): #if the beatmap is of mode standard 
-                # bm_list.append(aclient.get_beatmap(map.id))
-                # bma_list.append(aclient.get_beatmap_attributes(map.id))
                 test_list.extend([aclient.get_beatmap(map.id),aclient.get_beatmap_attributes(map.id)])
     print("tasks gathered")
     
     print(len(bm_list), len(bma_list))
-    # bm_result: list = await a.gather(*bm_list) 
-    # bma_result: list = await a.gather(*bma_list)
+   
     test_list = await a.gather(*test_list)
 
-    # for bm, bma in zip(bm_result, bma_result):
-    #     beatmap_list.append(beatmap_dna(user_fitness_base, bm, bma))
+    
     for i in range(0,len(test_list),2):
         beatmap_list.append(beatmap_dna(user_fitness_base, test_list[i], test_list[i+1]))
 
     #creates a list of 10 random beatmaps to use as a parameter for the genome class
     def random_genome() -> list[beatmap_dna]:
+        """
+        Returns random Genomes to fill the initial generation 
+        """
+
         rand_list: list[beatmap_dna] = []
         
         for i in range(dna_size):
@@ -116,14 +113,14 @@ async def osu_gene(id: int):
                 
 
         return(rand_list)
-    print(beatmap_list)
+    
     #populate our genome list with pop_size amount of genomes 
     for i in range(pop_size):
         
         genome_list.append(Genome(random_genome()))
 
 
-    def grab_parent():
+    def grab_parent() -> list[Genome]:
         """
         Tounrament selection for the genetic algorithm
 
@@ -142,9 +139,16 @@ async def osu_gene(id: int):
         return(pop[0])
         
 
-    def cross_over():
+    def cross_over() -> None:
+        """
+        This crossover function will populate the beatmap list by crossing over two Genomes.
+
+        Two parent genomes are appeneded to each other, parsed for duplicate maps, sorted by fitness,
+        then split in two, the fitter half is the new child.
+
+        There are no mutations.
+        """
         
-        #cross over function , this will populate our new generation of solutions 
         #getting the two parents 
         parent1:Genome = grab_parent()
         parent2:Genome = grab_parent()
@@ -169,7 +173,6 @@ async def osu_gene(id: int):
         
         child: Genome = Genome(new_list[:ceil(len(new_list)/2)])
 
-        #append the new child
         genome_list.append(child)  
 
     #running the corssover function for a given amount of generations 
@@ -177,10 +180,12 @@ async def osu_gene(id: int):
         
         cross_over()
     
-    #sorting via lambda 
+    #sorting the from most fit to least fit
     genome_list.sort(key=lambda p: p.genome_fitness)
 
     #returning the list of fitess genome
+    print(genome_list[0].genome_fitness, genome_list[-1].genome_fitness)
+
     return genome_list[0].print_beatmap_list()
 
 

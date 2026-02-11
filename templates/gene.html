@@ -7,20 +7,31 @@
 
 
 {% block body %}
-<div class="flex flex-col justify-center">
-    <div class="flex justify-center">
-        <div >
-            <form action="/" method="post" class="">
-            <p>ID:<input type="text" name="id" class="bg-white " /><input type="submit" value="submit" /></p> 
-            </form></div>
-    </div>
-
-    <div class="flex justify-center margin font-bold mb">
-            <h1>Output</h1>
-    </div>
+<div class="flex flex-col justify-center gap-8">
     <div class="flex justify-center">
         
-        <div class="border-primary rounded-3xl border-5 w-6/12 h-32" >
+        <div class="relative justify-center mt-20 font-bold ">
+            <div class="absolute inset-0 bg-primary rounded-2xl blur-sm"></div>
+            <div class="absolute inset-0 bg-white rounded-2xl"></div>
+            <div class="border-2 border-primary rounded-2xl bg-white">
+                <form action="/" method="post" class="relative z-10 focus:outline-none">
+                <div><input placeholder="Id:" type="text" name="id" class="rounded-2xl bg-white m-0.5" /><input type="submit" value="Submit" class=" hover:scale-105 bg-primary p-2 rounded-2xl" /></div> 
+                </form>
+            </div>
+            
+        </div>
+    </div>
+<div class="flex justify-center mt-8">
+    <div class="relative">
+        <div class="relative flex justify-center font-bold border-2 border-primary rounded-2xl p-2 pl-4 pr-4 bg-primary-50 opacity-100 z-10">
+                <h1 class=" text-2xl">Output</h1>
+        </div> 
+        <div class="absolute inset-0 bg-primary blur-sm"></div>
+    </div>
+</div>
+    <div class="relative mb-10">
+        <div class="absolute m-auto inset-0 bg-primary rounded-3xl border-2 w-6/12 h-32 blur-sm"></div>
+        <div class="border-primary m-auto rounded-3xl border-2 w-6/12 h-32 bg-primary-50 opacity-100 relative flex flex-col" >
                 {% for i in item %}
                     
                     <td>{{i | safe}}</td>
