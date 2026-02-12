@@ -12,7 +12,7 @@ import os
 import asyncio as a
 from dotenv import load_dotenv
 from typing import List
-from numpy import var
+from numpy import var, std
 load_dotenv()
 
 client_id = int(os.getenv('CLIENT_ID'))
@@ -29,8 +29,8 @@ class beatmap_dna:
     Includes a fitness score and id 
     """ 
 
-    def __init__(self, user_fitness: list, bm: Beatmap, bma: BeatmapDifficultyAttributes):
-        self.user_fitenss_list: list = user_fitness
+    def __init__(self, user_fitness: dict, bm: Beatmap, bma: BeatmapDifficultyAttributes):
+        self.user_fitenss_dict: dict = user_fitness
         self.id: int = bm.id
         self.fitness_score: float
         self.bm = bm
@@ -47,11 +47,11 @@ class beatmap_dna:
         avg_deviation:float = 0
        
         print("this is map fitness")
-        avg_deviation += 2*abs(self.bm.bpm - self.user_fitenss_list["bpm"])
-        avg_deviation += abs(self.bma.mode_attributes.aim_difficulty - self.user_fitenss_list["aim"])
-        avg_deviation += abs(self.bm.last_updated.year - self.user_fitenss_list["ranked_year"])
-        avg_deviation += 10*abs(self.bma.star_rating - self.user_fitenss_list["sr"])
-        avg_deviation += abs(self.bma.mode_attributes.slider_factor - self.user_fitenss_list["slider"])
+        avg_deviation += 2*abs(self.bm.bpm - self.user_fitenss_dict["bpm"])
+        avg_deviation += abs(self.bma.mode_attributes.aim_difficulty - self.user_fitenss_dict["aim"])
+        avg_deviation += abs(self.bm.last_updated.year - self.user_fitenss_dict["ranked_year"])
+        avg_deviation += 10*abs(self.bma.star_rating - self.user_fitenss_dict["sr"])
+        avg_deviation += abs(self.bma.mode_attributes.slider_factor - self.user_fitenss_dict["slider"])
 
         self.fitness_score = avg_deviation
         
@@ -81,6 +81,6 @@ class Genome:
         for beatmap in self.dna_list:
             fitness_count += beatmap.fitness_score
             fitness_list.append(beatmap.fitness_score*2)
-        return((fitness_count/len(self.dna_list)) + 2*(var(fitness_list)))
+        return((fitness_count/len(self.dna_list)) + 2*(std(fitness_list)))
 
 

@@ -37,7 +37,7 @@ def get_mods_as_list(score: LegacyScore | SoloScore):
     return(mod_list)
     
 #represents the basis of a fit beat map 
-async def user_fitness(user_id: int)->list:
+async def user_fitness(user_id: int)->dict:
 #get top 5 and derive a fitness function based on the bpm, spacing, ar, star rating and genre given
     
     avg_bpm: float = 0
@@ -87,7 +87,6 @@ async def user_fitness(user_id: int)->list:
         "sr": avg_sr/5,
         "slider": avg_slider_diff/5
         })
-    #[avg_bpm/5, avg_aim_diff/5, math.floor(avg_ranked_year/5), avg_sr/5, avg_slider_diff/5]
 
 
 

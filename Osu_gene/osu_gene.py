@@ -55,7 +55,6 @@ async def osu_gene(id: int):
     )   
 
     beatmapset_list.extend(song.beatmapsets)
-    song_page = 1
 
     while len(song.beatmapsets) > 0 and  song_page < 10:
         song = client.search_beatmapsets(
@@ -79,7 +78,7 @@ async def osu_gene(id: int):
     dna_size: int = 10 # size of the dna list in each genome 
     bm_list: list = [] #serves as the task list for all the get beatmap co routines 
     bma_list: list = [] #serves as the task list for all the get beatmap attribute co routines 
-    selection_pressure: int = 10 #the population size of parents for a tournament selection in the grab parent method 
+    selection_pressure: int = 20 #the population size of parents for a tournament selection in the grab parent method 
     test_list: list = []
 
     # create a list of beatmap objects
