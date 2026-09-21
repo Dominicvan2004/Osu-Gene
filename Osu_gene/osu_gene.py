@@ -3,7 +3,6 @@ from random import randint
 from dotenv import load_dotenv
 from Osu_gene.user import user_fitness
 from math import ceil
-import asyncio as a
 
 from Osu_gene.classes import( 
     Genome,
@@ -32,12 +31,11 @@ redirect_url = os.getenv('REDIRECT_URL')
 
 
 client = Client.from_credentials(client_id, client_secret, redirect_url, request_wait_time = 0.1)
-aclient = Aclient.from_credentials(client_id, client_secret, redirect_url, request_wait_time = 0.1)
 
-async def osu_gene(id: int):
+def osu_gene(id: int):
 
     #retrieving the beatmaps within the given parameters 
-    user_fitness_base: list = await user_fitness(id)
+    user_fitness_base: list = user_fitness(id)
     print(user_fitness_base)
 
     #a list to hold all of the beatmaps 
